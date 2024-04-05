@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Universal Viewer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/universalviewer@4.0.25/dist/uv.css"
+    />
+    <script
+      type="application/javascript"
+      src="https://cdn.jsdelivr.net/npm/universalviewer@4.0.25/dist/umd/UV.js"
+    ></script>
+    <style>
+      #uv {
+        width: 924px;
+        height: 668px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="uv" id="uv"></div>
+
+    <script>
+      data = {
+        manifest:
+          "https://test.iiif.library.ucla.edu/ark%3A%2F21198%2Fz1hf3f9k/manifest",
+        embedded: true, // needed for codesandbox frame
+      };
+
+      uv = UV.init("uv", data);
+
+      function changeManifest(){
+        data.manifest = document.getElementById('manifest').value
+        UV.reload()
+        console.log("clicked")
+      }
+    </script>
+    <div id="options">
+      
+      <input size="100" id="manifest" type="text" value="">
+      <a id="setManifestButton" class="button" href="#" onclick="changeManifest()">Set</a>
+  </div>
+  </body>
+</html>
