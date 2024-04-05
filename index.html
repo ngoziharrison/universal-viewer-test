@@ -24,24 +24,43 @@
     <div class="uv" id="uv"></div>
 
     <script>
-      data = {
+      var data = {
         manifest:
           "https://test.iiif.library.ucla.edu/ark%3A%2F21198%2Fz1hf3f9k/manifest",
         embedded: true, // needed for codesandbox frame
       };
 
       uv = UV.init("uv", data);
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        var setManifestButton = document.getElementById("setManifestButton");
+        
 
-      function changeManifest(){
-        data.manifest = document.getElementById('manifest').value
-        UV.reload()
+        setManifestButton.addEventListener("click", function(e) {
+          var manifestButtonValue = document.getElementById("manifest").value;
+          
+          changeManifest(manifestButtonValue)
+          
+        });
+      });
+
+      function changeManifest(value){
+        uv.set({
+                manifest: value,
+                
+            });
+        console.log(value)
         console.log("clicked")
       }
+      
+      
+      
+      
     </script>
     <div id="options">
       
       <input size="100" id="manifest" type="text" value="">
-      <a id="setManifestButton" class="button" href="#" onclick="changeManifest()">Set</a>
+      <a id="setManifestButton" class="button" href="#" >Set</a>
   </div>
   </body>
 </html>
